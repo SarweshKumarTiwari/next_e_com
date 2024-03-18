@@ -1,0 +1,12 @@
+{
+    "asyncHandler":{
+        "prefix":["ahandler","asyncHandler"],
+        "body":["return await asyncHandler(async (req)=>{","\t$1","\treturn NextResponse.json({success:${0:'any'}},{status:200})","})(req)"],
+        "description":"async handler"
+    }
+
+	"newapi":{
+		"prefix":["apinext","napi"],
+		"body":["export async function ${1:post} (req:NextRequest){","\t$0","}"]
+	}
+}
