@@ -11,14 +11,21 @@ import mongoose, { Schema } from "mongoose";
         default:0
     },
     shippments:[
-        {
+    {
+        product:{
             type:mongoose.Types.ObjectId,
             ref:"shippings",
             required:false
-        }
+        },
+        stock:{
+            type:Number,
+            required:false
+        },
+        required:false
+    }
     ]
  },{
     timestamps:true
  })
 
- export default mongoose.model("sellers",seller)
+ export default mongoose.models.sellers||mongoose.model("sellers",seller)
