@@ -8,5 +8,5 @@ export default function authHandler(req:NextRequest){
         throw new ApiError(400,"unauthorised");
     }
     const data=jwt.verify(cookie.value,process.env.ACCESS_TOKEN as string);
-    return data;
+    return JSON.parse(data as string);
 }
