@@ -10,13 +10,13 @@ export async function  POST(req:NextRequest){
             throw new ApiError(400,"no valid email or password");
         }
         const user=await userModel.findOne({email:body.email});
-        if (!user&&!user.compare(body.password)) {
+        if (!user||!(await user.compare(body.password))) {
             throw new ApiError(400,"no user found or incorrect password");
         }
         const response=NextResponse.json({
             success:"logged"
         },{status:200})
-        response.cookies.set("rt",user.accessToken());
+        response.cookies.set("at",user.accessToken());
         return response;
     })(req);
 }
