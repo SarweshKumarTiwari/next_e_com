@@ -2,6 +2,7 @@ import asyncHandler from "@/lib/asyncHandler";
 import ApiError from "@/lib/error";
 import { NextRequest, NextResponse } from "next/server";
 import userModel from "@/models/user"
+import authHandler from "@/handlers/authHandler";
 
 export async function  POST(req:NextRequest){
     return await asyncHandler(async (req)=>{
@@ -23,6 +24,11 @@ export async function  POST(req:NextRequest){
 
 export async function DELETE(req:NextRequest){
     return await asyncHandler(async (req)=>{
+        const user=authHandler(req);
+        console.log(user);
+        if (!user) {
+            throw new ApiError(400,"user not authentic");
+        }
         const response=NextResponse.json({success:"logged out"},{status:200});
         response.cookies.set("at","");
         return response;
