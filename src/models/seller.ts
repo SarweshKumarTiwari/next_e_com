@@ -10,7 +10,7 @@ import mongoose, { Schema } from "mongoose";
         type:Number,
         default:0
     },
-    shippments:[
+    stocks:[
     {
         product:{
             type:mongoose.Types.ObjectId,
@@ -21,7 +21,6 @@ import mongoose, { Schema } from "mongoose";
             type:Number,
             required:false
         },
-        required:false
     }
     ]
  },{
