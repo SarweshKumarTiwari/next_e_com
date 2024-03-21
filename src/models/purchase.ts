@@ -17,15 +17,16 @@ const purchase = new Schema({
     },
     isShipped: {
         type: Boolean,
-        required: false
+        default: false
     },
     seller: {
         type:mongoose.Types.ObjectId,
-        ref:"sellers"
+        ref:"sellers",
+        required:true
     }
 },
     {
         timestamps: true
     }
 )
-export default mongoose.model("purchases",purchase);
+export default mongoose.models.purchases||mongoose.model("purchases",purchase);
